@@ -28,14 +28,13 @@ lnomatchatall = []
 pi_init_length = 100
 no_match_at_all = 0
 for k in range(100000):
-    for i in range(2,1000):
+    for i in range(2,10000):
         ##Make longer and longer strings
         randstring = id_generator(size=i)
         ##Convert to ASCII
         #ascii = [ord(c) for c in randstring]
         ascii = ''.join(str(ord(c)) for c in randstring)
-    
-        
+        currentnotfound = 0 
         for j in range(1,pi_init_length):
             try:
                 # import version included with old SymPy
@@ -52,8 +51,9 @@ for k in range(100000):
                 break;
             else:
                 notfound = notfound + 1;
+		currentnotfound = currentnotfound +1;
                 lnotfound.append([i,j*10])
-        if notfound == 100:
+        if currentnotfound == 99:
             print("NO MATCH for string: " + str(randstring))
             pi_init_length = pi_init_length*2
             no_match_at_all = no_match_at_all +1;
